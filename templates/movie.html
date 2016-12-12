@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  API Sandbox: {{ movie.title }}
+{% endblock %}
+
+{% block content %}
+  {% if movie %}
+  <div class="row">
+    <div class="col-xs-4">
+      <img src="https://image.tmdb.org/t/p/w1280{{movie.poster_path}}" alt="{{ movie.title }}" width="300px" />
+    </div>
+    <div class="col-xs-8">
+      <h3>{{ movie.title }}</h3>
+      <p>{{ movie.vote_average }} out of {{ movie.vote_count }}</p>
+      <p>{{ movie.tagline }}</p>
+      <p>{{ movie.overview }}</p>
+      <p><a href="http://www.imdb.com/title/{{movie.imdb_id}}">More info on IMDB</a></p>
+      <p><a href="/">Back to Index</a></p>
+  </div>
+  {% endif %}
+{% endblock %}
