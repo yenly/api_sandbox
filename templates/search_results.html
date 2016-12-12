@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  API Sandbox: TMDB API - Search Results
+{% endblock %}
+
+{% block content %}
+  <h1>TMDB API - Search Results</h1>
+  {% if movies %}
+    <ul>
+      {% for movie in movies %}
+      <li><a href="/movie/{{ movie.id }}">{{ movie.title }}</a>: <i class="fa fa-star"></i> {{ movie.vote_average }} based on {{ movie.vote_count }} ratings</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+{% endblock %}

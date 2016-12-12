@@ -4,7 +4,6 @@ import os, requests, json
 
 # MovieDB API key
 tmdb_api_key = os.environ['TMDB_API_KEY']
-tmdb_url = 'https://api.themoviedb.org/3/movie/550?api_key=%s' % (tmdb_api_key)
 
 app = Flask(__name__)
 
@@ -25,6 +24,18 @@ def display_tmdb_movie(tmdb_id):
 
     return render_template('movie.html', movie=movie)
 
+@app.route('/search_movies')
+def search_movies():
+    """Takes search movies and display results list."""
+    search_term = 'Indiana+Jones'
+
+    tmdb_url = 'https://api.themoviedb.org/3/search/movie?api_key=%s&query=%s' % (tmdb_api_key, search_term)
+
+    tmdb_request = requests.get(tmdb_url)
+    response = tmdb_request.json()
+    movies = response['results']
+
+    return render_template('search_results.html',movies=movies)
 
 if __name__ == "__main__":
     app.debug = True
