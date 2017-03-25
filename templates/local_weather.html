@@ -7,7 +7,18 @@
 {% block content %}
   <div>
     <h1>OpenWeatherMap API Results</h1>
-    <p>Display data here.</p>
+
+    <p>Location: {{ weather_info.name }} {{ weather_info.sys.country }}</p>
+
+    {% if weather_info.weather %}
+      {% for weather in weather_info.weather %}
+        {{ weather.main }} {{ weather.description }}
+      {% endfor %}
+    {% endif %}
+
+    <p>Sunrise: {{ weather_info.sys.sunrise }}</p>
+
+    <p>Sunset: {{ weather_info.sys.sunset }}</p>
 
     <p><a href="/">Back to Index</a></p>
   </div>

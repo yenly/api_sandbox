@@ -1,6 +1,7 @@
 from flask import Flask, render_template
 from jinja2 import StrictUndefined
 import os, requests, json
+from pprint import pprint
 
 # MovieDB API key
 tmdb_api_key = os.environ['TMDB_API_KEY']
@@ -45,7 +46,15 @@ def search_movies():
 def get_local_weather():
     """Display local weather from OpenWeatherMap."""
 
-    return render_template('local_weather.html')
+    owm_url = 'http://api.openweathermap.org/data/2.5/weather?lat=35&lon=139&appid=%s' % (owm_api_key)
+
+    owm_request = requests.get(owm_url)
+    # pprint(r.json())
+    weather_info = owm_request.json()
+    pprint(weather_info)
+    # print weather_info['name']
+
+    return render_template('local_weather.html',weather_info=weather_info)
 
 if __name__ == "__main__":
     app.debug = True
