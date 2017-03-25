@@ -8,7 +8,7 @@
   <div>
     <h1>OpenWeatherMap API Results</h1>
 
-    <p>Location: {{ weather_info.name }} {{ weather_info.sys.country }}</p>
+    <p>Location: {{ weather_info.name }}, {{ weather_info.sys.country }}</p>
 
     {% if weather_info.weather %}
       {% for weather in weather_info.weather %}

@@ -46,7 +46,10 @@ def search_movies():
 def get_local_weather():
     """Display local weather from OpenWeatherMap."""
 
-    owm_url = 'http://api.openweathermap.org/data/2.5/weather?lat=35&lon=139&appid=%s' % (owm_api_key)
+    user_lat = "37.7825"
+    user_long = "-122.4846"
+
+    owm_url = 'http://api.openweathermap.org/data/2.5/weather?lat=%s&lon=%s&appid=%s' % (user_lat, user_long, owm_api_key)
 
     owm_request = requests.get(owm_url)
     # pprint(r.json())
