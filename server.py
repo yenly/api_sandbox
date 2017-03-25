@@ -4,6 +4,7 @@ import os, requests, json
 
 # MovieDB API key
 tmdb_api_key = os.environ['TMDB_API_KEY']
+owm_api_key = os.environ['OWM_API_KEY']
 
 app = Flask(__name__)
 
@@ -12,6 +13,7 @@ def index():
     """Display list of APIs"""
 
     return render_template('index.html')
+
 
 @app.route('/movie/<int:tmdb_id>')
 def display_tmdb_movie(tmdb_id):
@@ -23,6 +25,7 @@ def display_tmdb_movie(tmdb_id):
     movie = tmdb_request.json()
 
     return render_template('movie.html', movie=movie)
+
 
 @app.route('/search_movies')
 def search_movies():
@@ -36,6 +39,13 @@ def search_movies():
     movies = response['results']
 
     return render_template('search_results.html',movies=movies)
+
+
+@app.route('/local_weather')
+def get_local_weather():
+    """Display local weather from OpenWeatherMap."""
+
+    return render_template('local_weather.html')
 
 if __name__ == "__main__":
     app.debug = True
